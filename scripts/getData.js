@@ -56,19 +56,21 @@ export const getData = {
     },
     catalog(callback){
         this.get((data) => {
-            const result = data.filter(item =>  item[PARAM.cat] );
+            const result = data.reduce((arr, item) => {
+                if(!arr.includes(item.category))
+                arr.push(item.category);
+                return arr;
+            },[]);
             callback(result);
         })
     },
     subCatalog(value, callback){
         this.get((data) => {
-            const result = data.filter(item => {
-                
-                    if(value === item[PARAM.cat]){
-                        return PARAM.subcat;
-                    }
-                
-            });
+            const result = data.reduce((arr, item) => {
+                if(!arr.includes(item.subcategory) && value === item.category)
+                arr.push(item.subcategory);
+                return arr;
+            },[]);;
             callback(result);
         })
     }
