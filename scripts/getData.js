@@ -25,8 +25,8 @@ export const getData = {
     },
     cart(list, callback){
         this.get((data) => {
-            const result = data.filter(item => list
-                .some(obj => {
+            const result = data.filter(item => list.
+                some(obj => {
                         return obj.id === item.id
                     }));
                     
